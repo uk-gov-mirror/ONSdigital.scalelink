@@ -15,7 +15,7 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 - Match score functions and their unit tests.
 - Run script, `main.py`, with updates to work on Spark 3.5.1.
 - Configs template, with updates to reflect updated `main.py`.
-- New unit tests for:
+- New unit tests:
   - `cartesian_join_dataframes` in `tests/utils/utils.py`.
   - `create_spark_session` in `tests/utils/test_utils_create_spark_session.py`.
   - `get_input_variables` in `tests/utils/utils.py`.
@@ -23,7 +23,7 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Dependabot updates:
+- Dependabot:
   - In GitHub Actions, bump actions/checkout from v4 to v5.
   - In GitHub Actions, bump actions/setup-python from v5 to v6.
 - Function `create_spark_session` in `scalelink/utils/utils.py`, to make it less verbose and make it work with Spark 3.5.1.
@@ -35,8 +35,9 @@ and this project adheres to [semantic versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - GitHub Action that increments release version - fixed typos.
-- Unit test for `cartesian_join_dataframes` in `tests/utils/utils.py`.
-- Unit test for `get_s` in `tests/utils/utils.py`.
+- Unit tests:
+  - `cartesian_join_dataframes` in `tests/utils/utils.py`.
+  - `get_s` in `tests/utils/utils.py`.
 
 ### Removed
 
