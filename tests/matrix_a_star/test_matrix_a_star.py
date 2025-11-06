@@ -27,21 +27,14 @@ Methods:
   solve_for_x_star
 """
 
-import chispa as ch
 import numpy as np
 import pandas as pd
 import pytest
 
-from pyspark.sql import SparkSession, functions as F
-from pandas.testing import assert_frame_equal
-
 from scalelink.matrix_a_star import matrix_a_star as ma
-from scalelink.utils.utils import create_spark_session
 
 
 def test_calculate_b():
-  
-  
     """
     Tests that calculate_b() gives the correct output when provided with
     appropriate inputs.
@@ -58,33 +51,28 @@ def test_calculate_b():
     assert test_output == expected_output
 
 
-
 def test_calculate_njklm_values(spark):
-
     """
     Tests that calculate_njklm_values() gives the correct output when provided with
-      appropriate inputs. 
+      appropriate inputs.
 
-    """ 
+    """
     test_input = spark.createDataFrame(
-      [
-          (1.0, 2.0, 1.0, 0.0),
-          (0.0, 1.0, 1.0, 0.0),
-          (0.0, 1.0, 1.0, 0.0),
-          (0.0, 1.0, 1.0, 0.0),
-      ],
-      ["col1", "col2", "col3", "col4"],
+        [
+            (1.0, 2.0, 1.0, 0.0),
+            (0.0, 1.0, 1.0, 0.0),
+            (0.0, 1.0, 1.0, 0.0),
+            (0.0, 1.0, 1.0, 0.0),
+        ],
+        ["col1", "col2", "col3", "col4"],
+    )
 
-      )
-    
-     
-    expected_output =  spark.createDataFrame(
-
-      [
-        (1.0, 5.0, 4.0, 0.0),
-      ],
-      ["col1", "col2", "col3", "col4"],
-      )
+    expected_output = spark.createDataFrame(
+        [
+            (1.0, 5.0, 4.0, 0.0),
+        ],
+        ["col1", "col2", "col3", "col4"],
+    )
 
     expected_output = expected_output.toPandas()
 
@@ -94,10 +82,8 @@ def test_calculate_njklm_values(spark):
 
     # Assert
     pd.testing.assert_frame_equal(test_output, expected_output)
-    #assert test_output ==  expected_output#
+    # assert test_output ==  expected_output#
 
- 
-    
 
 def test_calculate_q():
     """
