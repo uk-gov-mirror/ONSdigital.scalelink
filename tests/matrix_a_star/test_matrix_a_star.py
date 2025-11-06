@@ -67,34 +67,36 @@ def test_calculate_njklm_values(spark):
 
     """ 
     test_input = spark.createDataFrame(
-    [
-        (1.0, 2.0, 1.0, 0.0),
-        (0.0, 1.0, 1.0, 0.0),
-        (0.0, 1.0, 1.0, 0.0),
-        (0.0, 1.0, 1.0, 0.0),
-    ],
-    ["col1", "col2", "col3", "col4"],
-      
-)
+      [
+          (1.0, 2.0, 1.0, 0.0),
+          (0.0, 1.0, 1.0, 0.0),
+          (0.0, 1.0, 1.0, 0.0),
+          (0.0, 1.0, 1.0, 0.0),
+      ],
+      ["col1", "col2", "col3", "col4"],
 
-               
+      )
     
-    expected_output = {
-      
-      "col1": 1.0,  
-      "col2": 5.0,
-      "col3": 4.0,
-      "col4": 0.0
-    }  # Use .toPandas() instead 
-       
+     
+    expected_output =  spark.createDataFrame(
+
+      [
+        (1.0, 5.0, 4.0, 0.0),
+      ],
+      ["col1", "col2", "col3", "col4"],
+      )
+
+    expected_output = expected_output.toPandas()
 
     # Act
     actual_output = ma.calculate_njklm_values(test_input)
-    
-    test_output =actual_output.iloc[0].to_dict() # remove to_dic()
+    test_output = actual_output
 
     # Assert
-    assert test_output ==  expected_output
+    pd.testing.assert_frame_equal(test_output, expected_output)
+    #assert test_output ==  expected_output#
+
+ 
     
 
 def test_calculate_q():
